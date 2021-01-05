@@ -4,7 +4,7 @@ public class EmailRequest {
    private String to;
    private String subject;
    private String message;
-   
+   private String attFile;
    
    
    
@@ -16,11 +16,12 @@ public EmailRequest() {
 
 
 
-public EmailRequest(String to, String subject, String message) {
+public EmailRequest(String to, String subject, String message, String attFile) {
 	super();
 	this.to = to;
 	this.subject = subject;
 	this.message = message;
+	this.attFile = attFile;
 }
 
 
@@ -68,10 +69,28 @@ public void setMessage(String message) {
 
 
 
+public String getAttFile() {
+	return attFile;
+}
+
+
+
+
+public void setAttFile(String attFile) {
+	this.attFile = attFile;
+}
+
+
+
+
 @Override
 public String toString() {
-	return "EmailRequest [to=" + to + ", subject=" + subject + ", message=" + message + "]";
+	return "EmailRequest [to=" + to + ", subject=" + subject + ", message=" + message + ", attFile=" + attFile + "]";
 }
+
+
+
+
 
 
 

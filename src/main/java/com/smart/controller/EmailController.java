@@ -20,7 +20,7 @@ public class EmailController {
 	
 	@PostMapping("/sendSuccesEmail")
 	public ResponseEntity<?> sendSuccesEmail(@ModelAttribute("emailRequest") EmailRequest emailRequest){
-		boolean result = this.emailService.sendEmail(emailRequest.getSubject(), emailRequest.getMessage(), emailRequest.getTo());
+		boolean result = this.emailService.sendEmailWithAttach(emailRequest.getSubject(), emailRequest.getMessage(),emailRequest.getAttFile() ,emailRequest.getTo());
 		
 		if(result) {
 			return ResponseEntity.ok("Email sent successfully...");
