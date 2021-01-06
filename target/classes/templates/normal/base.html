@@ -25,6 +25,14 @@
 <link rel="stylesheet" th:href="@{/css/util.css}" />
 <link rel="stylesheet" th:href="@{/css/select2.min.css}" />
 
+<!-- link for autocmplete -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+
+
+
+
 <title th:text="${title}">Base html</title>
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -96,6 +104,13 @@
 		crossorigin="anonymous"></script>
 	<script th:src="@{/js/js.js}"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+	
+	<!-- script for auto complete -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	
 	<script>
 		function deleteContact(cId){
 			 swal({

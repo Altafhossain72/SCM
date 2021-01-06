@@ -112,11 +112,11 @@ public class EmailService {
 			mimeMessage.setSubject(subject);
 //	            set text to message
 //	            mimeMessage.setText(message);
-			mimeMessage.setContent(message, "text/html");
-			
+
 			//coding for attachment start
 			BodyPart messageBodyPart = new MimeBodyPart();
-	        messageBodyPart.setText("Here's the file");
+			messageBodyPart.setContent(message, "text/html");
+//	        messageBodyPart.setText("Here's the file");
 	        Multipart multipart = new MimeMultipart();
 	        multipart.addBodyPart(messageBodyPart);
 	        messageBodyPart = new MimeBodyPart();

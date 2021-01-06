@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smart.dao.UserRepository;
 import com.smart.model.EmailRequest;
 import com.smart.services.EmailService;
 
@@ -18,6 +19,7 @@ public class EmailController {
 	@Autowired
 	private EmailService emailService;
 	
+
 	@PostMapping("/sendSuccesEmail")
 	public ResponseEntity<?> sendSuccesEmail(@ModelAttribute("emailRequest") EmailRequest emailRequest){
 		boolean result = this.emailService.sendEmailWithAttach(emailRequest.getSubject(), emailRequest.getMessage(),emailRequest.getAttFile() ,emailRequest.getTo());
