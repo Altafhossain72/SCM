@@ -19,25 +19,21 @@
 		<div class="contact1">
 			<div class="container-contact1">
 				<div class="contact1-pic js-tilt" data-tilt>
-					<img th:src="@{/image/img-01.png}" alt="IMG" />
+					<img th:src="@{/image/sms.jpg}" alt="IMG" />
 				</div>
 
 				<form class="contact1-form validate-form"
-					th:action="@{/sendSuccesEmail}" method="post">
-					<span class="contact1-form-title">SEND EMAIL TO YOUR CONTACTS</span>
+					th:action="@{/sendSuccesSms}" method="post">
+					<span class="contact1-form-title">SEND SMS TO YOUR CONTACTS</span>
 
 
 					<div class="wrap-input1 validate-input"
 						data-validate="Valid email is required: ex@abc.xyz">
-						<input class="input1" id="mail" type="text" name="to" placeholder="Email">
+						<input class="input1" id="sms" type="text" name="to" placeholder="To Number">
 						<span class="shadow-input1"></span>
 					</div>
 
-					<div class="wrap-input1 validate-input"
-						data-validate="Subject is required">
-						<input class="input1" type="text" name="subject"
-							placeholder="Subject"> <span class="shadow-input1"></span>
-					</div>
+				
 
 					<div class="wrap-input1 validate-input"
 						data-validate="Message is required">
@@ -45,20 +41,11 @@
 						<span class="shadow-input1"></span>
 					</div>
 
-					<div class="wrap-input1 validate-input"
-						data-validate="Subject is required">
-						<input class="input1" type="file" name="attFile"> <span
-							class="shadow-input1"></span>
-					</div>
-
-
-				
-
-
+					
 
 					<div class="container-contact1-form-btn">
 						<button class="contact1-form-btn">
-							<span> Send Email <i class="fa fa-long-arrow-right"
+							<span> Send SMS <i class="fa fa-long-arrow-right"
 								aria-hidden="true"></i>
 							</span>
 						</button>
@@ -67,17 +54,11 @@
 			</div>
 		</div>
 		
-		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
- <script>
-      tinymce.init({
-        selector: '#mytextarea'
-      });
-    </script>
-
-
-	<script>
+		
+		
+		<script>
 			$(".item").removeClass("active");
-			$("#mail-link").addClass("active");
+			$("#sms-link").addClass("active");
 		</script>
 
 	</section>

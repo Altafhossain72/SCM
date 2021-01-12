@@ -22,7 +22,7 @@
 							<form th:action="@{/user/update-process}" th:object="${contact}"
 								enctype="multipart/form-data" method="post" class="mt-2">
 								<!-- name -->
-								<input type="text" name="cId" th:value="${contact.cId}"/>
+								<input type="hidden" name="cId" th:value="${contact.cId}"/>
 								<div class="input-group mb-2 mr-sm-2">
 									<div class="input-group-prepend">
 										<div class="input-group-text">

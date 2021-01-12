@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::Layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>HomePage</title>
+
+
+</head>
+<body>
+
+	<section>
+
+
+		<style type="text/css">
+@import url("/css/chatstyle.css");
+</style>
+
+		<div class="container">
+			<div class="row d-flex justify-content-center mt-4">
+				<div class="col-md-4 d-flex flex-wrap align-items-center  ">
+					<div class="contact1-pic js-tilt" data-tilt>
+					<img th:src="@{/image/livechat.png}" alt="IMG" />
+				</div>
+				</div>
+
+
+				<div class="col-md-8 frame">
+					<ul id="chatul"></ul>
+					<div>
+						<div class="msj-rta macro">
+							<div class="text text-r"
+								style="background: whitesmoke !important">
+								<input class="mytext" placeholder="Type a message" />
+							</div>
+
+						</div>
+						<div style="padding: 10px;">
+							<span id="send"><i class="fa fa-paper-plane fa-2x"
+								aria-hidden="true"></i></span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<script
+			src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script th:src="@{/js/js2.js}"></script>
+<script>
+			$(".item").removeClass("active");
+			$("#chat-link").addClass("active");
+		</script>
+
+
+	</section>
+
+
+
+
+</body>
+</html>

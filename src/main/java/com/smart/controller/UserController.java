@@ -284,6 +284,21 @@ public class UserController {
 	}
 	
 	
+	@GetMapping("/sendsms")
+	public String sendsms(Model m) {
+		m.addAttribute("title", "User-Dashboard");
+		return "normal/sms";
+	
+	}
+	
+	
+	@GetMapping("/sendChat")
+	public String sendchat(Model m) {
+		m.addAttribute("title", "User-Dashboard");
+		return "normal/chat";
+	
+	}
+	
 	
 	
 }

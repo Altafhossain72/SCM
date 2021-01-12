@@ -28,6 +28,14 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
    public List<String> getEmail(String term, User user);
 
 	
+	//for seraching phone
+		@Modifying
+	    @Query(
+	            value = "select e.phone from Contact e where e.phone LIKE %:term% and e.user_id=:user",
+	            nativeQuery = true
+	    )
+	   public List<String> getPhone(String term, User user);
+	
 	
 	
 }

@@ -57,3 +57,11 @@ $( function() {
     });
   } );
 
+$( function() {
+    $( "#sms" ).autocomplete({
+      source: "autocomplete2",
+      minLength: 3
+    });
+  } );
+
+

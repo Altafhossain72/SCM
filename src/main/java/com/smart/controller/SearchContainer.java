@@ -43,6 +43,14 @@ public class SearchContainer {
 	        return email;
 	    }
 
-	
+	 @RequestMapping(value = "/user/autocomplete2")
+	    @ResponseBody
+	    public List<String> autoNum(@RequestParam(value = "term", required = false, defaultValue = "")String term, Principal p){
+		 String userName = p.getName();
+		 User user = this.UserRepository.getUserByUsername(userName);
+		 List<String> phone = this.contactRepository.getPhone(term, user);
+		 System.out.println(phone);
+	        return phone;
+	    }
 	
 }

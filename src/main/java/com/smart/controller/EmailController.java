@@ -39,4 +39,19 @@ public class EmailController {
 		return "redirect:/user/sendmail";
 		
 	}
+	
+	
+	
+	//sms sending
+	@PostMapping("/sendSuccesSms")
+	public String sendSuccesSms(HttpSession session){
+
+			session.setAttribute("message", new Message("SMS sent Successfully  !! ", "alert-success"));
+			
+			return "redirect:/user/sendsms";
+		
+	}
+	
+	
+	
 }
