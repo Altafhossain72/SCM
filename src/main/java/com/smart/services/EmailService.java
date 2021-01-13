@@ -1,5 +1,8 @@
 package com.smart.services;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -18,6 +21,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class EmailService {
@@ -120,7 +124,7 @@ public class EmailService {
 	        Multipart multipart = new MimeMultipart();
 	        multipart.addBodyPart(messageBodyPart);
 	        messageBodyPart = new MimeBodyPart();
-	        filename= "E:/anchor1.png";
+	        
 	        DataSource source = new FileDataSource(filename);
 	        messageBodyPart.setDataHandler(new DataHandler(source));
 	        messageBodyPart.setFileName(filename);
@@ -146,6 +150,15 @@ public class EmailService {
 	}
 
 	
+	
+	public  File convert(MultipartFile file) throws IOException {
+		File convFile = new File(file.getOriginalFilename());
+		convFile.createNewFile();
+		FileOutputStream fos = new FileOutputStream(convFile);
+		fos.write(file.getBytes());
+		fos.close();
+		return convFile;
+	}
 	
 	
 	
