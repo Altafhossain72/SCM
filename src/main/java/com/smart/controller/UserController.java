@@ -137,6 +137,9 @@ public class UserController {
 	
 	@GetMapping("/delete/{cId}")
 	public String deleteContact(@PathVariable("cId") Integer cId, Principal p) {
+		
+		try {
+		
 		Contact contact = this.contactRepository.findById(cId).get();
 		String userName = p.getName();
 		User user = this.userRepository.getUserByUsername(userName);
@@ -144,8 +147,16 @@ public class UserController {
 			/*
 			 * contact.setUser(null); this.contactRepository.delete(contact);
 			 */
+			
+			//delete old image file
+			File file2 = new ClassPathResource("static/image").getFile();
+			new File(file2, contact.getImage()).delete();
+			
 			user.getContacts().remove(contact);
 			this.userRepository.save(user);
+		}
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		return "redirect:/user/show-contacts/0";
 	}
@@ -176,7 +187,7 @@ public class UserController {
 				contact.setImage(file.getOriginalFilename());
 				//delete old image file
 				File file2 = new ClassPathResource("static/image").getFile();
-				new File(file2, contact.getImage()).delete();
+				new File(file2, oldContact.getImage()).delete();
 				//place new file
 				File savePath = new ClassPathResource("static/image").getFile();
 				Path path = Paths.get(savePath.getAbsolutePath() + File.separator + file.getOriginalFilename());
