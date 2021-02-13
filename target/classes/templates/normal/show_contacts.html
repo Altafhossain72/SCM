@@ -11,6 +11,17 @@
 			<div class="card-body">
 				<h2 class="text-center">View Contacts</h2>
 				<div class="search-container my-2"> 
+				
+				<!-- report button start-->
+				
+				<div class="float-right mb-3">
+				<form method="get" th:action="@{'/user/gpdf/'+${Rid}}">
+					<button class="btn btn-outline-primary btn-sm mt-2">Print</button>
+				</form></div>
+				<!-- report button  end-->
+				
+				
+									
 					<input onkeyup="search()" type="text" id="search-content" placeholder="Serach your contacts" class="form-control " />
 					<div class="nofound">
 						<h6>no such contact found</h6>

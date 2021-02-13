@@ -1,13 +1,19 @@
 package com.smart.controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -33,6 +39,8 @@ import com.smart.dao.UserRepository;
 import com.smart.entities.Contact;
 import com.smart.entities.User;
 import com.smart.helper.Message;
+import com.smart.jasperreports.SimpleReportExporter;
+import com.smart.jasperreports.SimpleReportFiller;
 
 @Controller
 @RequestMapping("/user")
@@ -43,12 +51,20 @@ public class UserController {
 	private UserRepository userRepository;
 	@Autowired
 	private ContactRepository contactRepository;
+	
+	@Autowired
+	SimpleReportFiller simpleReportFiller;
+	
+	@Autowired
+	private ServletContext servletContext;
 
 	@ModelAttribute
 	public void sendCommonData(Model m, Principal principal) {
 		String userName = principal.getName();
 		User user = this.userRepository.getUserByUsername(userName);
+		int Rid = user.getId();
 		m.addAttribute("user", user);
+		m.addAttribute("Rid", Rid);
 	}
 
 	@RequestMapping("/index")
@@ -309,6 +325,46 @@ public class UserController {
 		return "normal/chat";
 	
 	}
+	
+	
+	
+	//report controller
+	
+	@GetMapping("/gpdf/{guserId}")
+	public String pdfWithParameter(@PathVariable int guserId, HttpServletResponse response,Principal p) {
+		response.setContentType("application/pdf");
+		
+		try {
+			
+			SimpleReportExporter simpleExporter = new SimpleReportExporter();
+
+			simpleReportFiller.setReportFileName("contactsReport.jrxml");
+			simpleReportFiller.compileReport();
+
+			Map<String, Object> parameters = new HashMap<>();
+			parameters.put("guserId", guserId);
+			simpleReportFiller.setParameters(parameters);
+			simpleReportFiller.fillReport();
+			simpleExporter.setJasperPrint(simpleReportFiller.getJasperPrint());
+
+			simpleExporter.exportToPdf("contactsReport.pdf", "altaf");
+
+			File file = new File("src/main/resources/reports/contactsReport.pdf");
+			response.setHeader("Content-Type", servletContext.getMimeType(file.getName()));
+			response.setHeader("Content-Length", String.valueOf(file.length()));
+			response.setHeader("Content-Disposition", "inline; filename=\"contactsReport.pdf\"");
+			Files.copy(file.toPath(), response.getOutputStream());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 	
 	
 	
